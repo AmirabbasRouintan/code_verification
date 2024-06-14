@@ -1,3 +1,11 @@
+# ██╗██╗  ██╗██╗        ███████╗██╗      ██████╗ ██╗    ██╗███████╗██████╗ 
+# ██║╚██╗██╔╝██║        ██╔════╝██║     ██╔═══██╗██║    ██║██╔════╝██╔══██╗
+# ██║ ╚███╔╝ ██║        █████╗  ██║     ██║   ██║██║ █╗ ██║█████╗  ██████╔╝
+# ██║ ██╔██╗ ██║        ██╔══╝  ██║     ██║   ██║██║███╗██║██╔══╝  ██╔══██╗
+# ██║██╔╝ ██╗██║███████╗██║     ███████╗╚██████╔╝╚███╔███╔╝███████╗██║  ██║
+
+
+
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -15,10 +23,8 @@ def send_email(subject, message, from_addr, to_addr):
     msg['To'] = to_addr
     msg['Subject'] = subject
 
-    # Plain text version
     body_text = MIMEText(message, 'plain')
 
-    # HTML version with large, bold text, centered alignment, and Vazirmat font
     html_message = f"""
     <html>
     <head>
@@ -59,7 +65,7 @@ def send_email(subject, message, from_addr, to_addr):
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(from_addr, 'ztsz axaa ipqm zjxm')
+    server.login(from_addr, '<app password which is from your gmail>')
     server.sendmail(from_addr, to_addr, msg.as_string())
     server.quit()
 
@@ -75,7 +81,7 @@ with open('user_emails.csv', 'a') as f:
     writer.writerow([get_name, get_email])
 
 subject = "Verify Your Email"
-send_email(subject, message, 'amirabbas.rouintan2007@gmail.com', get_email)
+send_email(subject, message, '<enter you email here>', get_email)
 
 print("Please enter the verification code you received via email.")
 get_code = int(input())
